@@ -11,11 +11,9 @@ function BoardRegister({ onRegister }) {
   const handleChangeTitle = useCallback((e) => {
     setTitle(e.target.value);
   }, []);
-
   const handleChangeContent = useCallback((e) => {
     setContent(e.target.value);
   }, []);
-
   const handleChangeWriter = useCallback((e) => {
     setWriter(e.target.value);
   }, []);
@@ -26,7 +24,7 @@ function BoardRegister({ onRegister }) {
 
       onRegister(title, content, writer);
     },
-    [title, content, writer, onRegister]
+    [title, content, writer]
   );
 
   return (

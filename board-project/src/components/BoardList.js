@@ -6,9 +6,9 @@ function BoardList({ boards, isLoading }) {
     <div align="center">
       <h2>게시판 목록</h2>
       {isLoading && "로딩중..."}
-      {!isLoading && boards && (
+      {!isLoading && (
         <>
-          <Link to="/create">새로 만들기</Link>
+          <Link to="create">새로 만들기</Link>
           <table border="1">
             <thead>
               <tr>
@@ -34,10 +34,10 @@ function BoardList({ boards, isLoading }) {
               )}
               {!!boards.length &&
                 boards.map((board) => (
-                  <tr key={board.boardNo}>
+                  <tr key={board.No}>
                     <td align="center">{board.boardNo}</td>
                     <td align="left">
-                      <Link to={`/read/${board.boardNo}`}>{board.title}</Link>
+                      <Link to={`read/${board.boardNo}`}>{board.title}</Link>
                     </td>
                     <td align="center">{board.writer}</td>
                     <td align="center">{board.regDate}</td>

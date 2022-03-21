@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { withRouter } from "react-router-dom";
 import * as client from "../lib/api";
 import BoardModify from "../components/BoardModify";
 
 const BoardModifyContainer = ({ match, history }) => {
-  // params 속성값 참조
+  // params 속성 값 참고
   const { boardNo } = match.params;
 
   // 컴포넌트 상태 선언
-  const [board, setBoard] = useState(null);
+  const [board, setBoard] = useState([]);
   const [isLoading, setLoading] = useState(null);
 
   // 수정 처리 함수
@@ -16,6 +16,7 @@ const BoardModifyContainer = ({ match, history }) => {
     try {
       await client.modifyBoard(boardNo, title, content);
       alert("수정되었습니다.");
+      console.log(boardNo);
       history.push("/read/" + boardNo);
     } catch (e) {
       console.log(e);
@@ -28,6 +29,7 @@ const BoardModifyContainer = ({ match, history }) => {
 
     try {
       const response = await client.fetchBoard(boardNo);
+
       setBoard(response.data);
       setLoading(false);
     } catch (e) {

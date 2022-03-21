@@ -6,7 +6,7 @@ function BoardRead({ boardNo, board, isLoading, onRemove }) {
     <div align="center">
       <h2>게시판 상세보기</h2>
       {isLoading && "로딩중..."}
-      {!isLoading && board && (
+      {!isLoading && (
         <>
           <table>
             <tbody>

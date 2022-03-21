@@ -4,7 +4,7 @@ import * as client from "../lib/api";
 import BoardRegister from "../components/BoardRegister";
 
 const BoardRegisterContainer = ({ history }) => {
-  // 등록 정보 전달
+  // 게시글 등록
   const onRegister = async (title, content, writer) => {
     try {
       const response = await client.registerBoard(title, content, writer);

@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { withRouter } from "react-router-dom";
 import * as client from "../lib/api";
 import BoardRead from "../components/BoardRead";
 
 const BoardReadContainer = ({ match, history }) => {
-  // params 속성값 참조
+  // 파라미터 속성값 참조
   const { boardNo } = match.params;
 
-  // 컴포넌트 상태 정의
-  const [board, setBoard] = useState(null);
-  const [isLoading, setLoading] = useState(false);
+  // 상태 정의
+  const [board, setBoard] = useState([]);
+  const [isLoading, setLoading] = useState(null);
 
   // 게시글 상세 조회
   const readBoard = async (boardNo) => {
@@ -26,15 +26,12 @@ const BoardReadContainer = ({ match, history }) => {
     }
   };
 
-  // 마운트 될 때 게시글 상세 정보를 가져옴
   useEffect(() => {
     readBoard(boardNo);
   }, [boardNo]);
 
   // 삭제 처리 함수
   const onRemove = async () => {
-    console.log("boardNo = " + boardNo);
-
     try {
       await client.removeBoard(boardNo);
       alert("삭제 되었습니다.");

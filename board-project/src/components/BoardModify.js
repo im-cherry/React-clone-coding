@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 function BoardModify({ board, isLoading, onModify }) {
@@ -7,19 +7,22 @@ function BoardModify({ board, isLoading, onModify }) {
   const [content, setContent] = useState("");
 
   // 함수
-  const handleChangeTitle = (e) => {
+  const handleChangeTitle = useCallback((e) => {
     setTitle(e.target.value);
-  };
+  }, []);
 
-  const handleChangeContent = (e) => {
+  const handleChangeContent = useCallback((e) => {
     setContent(e.target.value);
-  };
+  }, []);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
 
-    onModify(board.boardNo, title, content);
-  };
+      onModify(board.boardNo, title, content);
+    },
+    [title, content]
+  );
 
   useEffect(() => {
     if (board) {
@@ -28,12 +31,12 @@ function BoardModify({ board, isLoading, onModify }) {
     }
   }, [board]);
 
-  // 마운트될 때 게시글 상세정보를 가져옴
+  // 마운트 될 때 게시글 상세 정보를 가져옴
   return (
     <div align="center">
-      <h2>게시판 목록</h2>
+      <h2>게시판 수정</h2>
       {isLoading && "로딩중..."}
-      {!isLoading && board && (
+      {!isLoading && (
         <>
           <form onSubmit={handleSubmit}>
             <table>

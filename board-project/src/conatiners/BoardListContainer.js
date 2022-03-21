@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import * as client from "../lib/api";
 import BoardList from "../components/BoardList";
 
 const BoardListContainer = () => {
-  // 컴포넌트 상태 선언
-  const [boards, setBoards] = useState([]);
+  // 상태 선언
+  const [boards, setBoards] = useState("");
   const [isLoading, setLoading] = useState(null);
 
   // 게시글 목록 조회
@@ -21,7 +21,6 @@ const BoardListContainer = () => {
     }
   };
 
-  // 마운트될 때 게시글 목록을 가져옴
   useEffect(() => {
     listBoard();
   }, []);
